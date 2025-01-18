@@ -22,7 +22,7 @@ type ManagerProp = {
 }
 
 const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
-    const [isShow, setIsShow] = useState<boolean>(false)
+    const [isShow, setIsShow] = useState(false)
     const [isDropdownOpen, setisDropdownOpen] = useState(false);
     const toggleDropdown = () => {
         setisDropdownOpen(!isDropdownOpen)
@@ -65,7 +65,7 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
             {/* end header section */}
 
             {/* content section */}
-            <div className="p-4">
+            <div>
                 {children}
             </div>
             {/* end content section */}
@@ -95,9 +95,9 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
 
                 {/* user section */}
                 <div className="w-full mt-10 mb-6 bg-primary text-black p-3 flex gap-2 items-center">
-                    <Image src={Profile} alt="Profile" width={40} height={40} className="rounded-full" />
+                    <Image src={Profile} alt="Profile" width={100} height={100} className="rounded-full" />
                     <div className="text-sm font-semibold">
-                        Manager Name
+                        abicoding...
                     </div>
                 </div>
                 {/* end user section */}
