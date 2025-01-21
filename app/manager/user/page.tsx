@@ -1,78 +1,131 @@
-interface dataUser {
-    id: number;
-    name: string;
-    text: string;
-    img: string
+"use client";
+
+import { useState, ChangeEvent, FormEvent } from "react";
+
+interface InputField {
+  id: number;
+  name: string;
+  message: string;
 }
 
-const testimoialsData:dataUser[] = [
-    {
-      id: 1,
-      name: "Jhone Dhots",
-      text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam cum accusantium at a? Mollitia ullam delectus?",
-      img: "https://picsum.photos/101/101"
-    },
-    {
-      id: 2,
-      name: "Alexander Arlot",
-      text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam cum accusantium at a? Mollitia ullam delectus?",
-      img: "https://picsum.photos/102/101"
-    },
-    {
-      id: 3,
-      name: "David Degea",
-      text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam cum accusantium at a? Mollitia ullam delectus?",
-      img: "https://picsum.photos/103/101"
-    },
-    {
-      id: 4,
-      name: "Jonny Rich",
-      text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam cum accusantium at a? Mollitia ullam delectus?",
-      img: "https://picsum.photos/104/101"
-    },
-    {
-      id: 5,
-      name: "Analisa",
-      text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam cum accusantium at a? Mollitia ullam delectus?",
-      img: "https://picsum.photos/106/101"
-    },
-  
-  ]
+export default function DashboardPage() {
+  const [inputs, setInputs] = useState<InputField[]>([
+    { id: 1, name: "", message: "" },
+  ]);
+  const [submittedData, setSubmittedData] = useState<InputField[] | null>(null);
 
+  const handleAddInput = () => {
+    const newId = inputs.length + 1;
+    setInputs([...inputs, { id: newId, name: "", message: "" }]);
+  };
 
-const DashboardPage = () => {
-    return (
-        <div className='py-10 bg-gray-900 text-white min-h-screen'>
-        <div className="container">
-            {/* Header section */}
-            <div className='text-center mb-20 max-w-[400px] mx-auto'>
-            <p className='text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>User</p>
-            <h1 className='text-3xl font-bold'>Testimonial</h1>
-            <p className='text-xs text-gray-400'>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ullam a nisi vero qui sed consequuntur iste cum minima error.
-            </p>
+  const handleRemoveInput = () => {
+    if (inputs.length > 1) {
+      setInputs(inputs.slice(0, -1));
+    }
+  };
+
+  const handleChange = (
+    id: number,
+    field: keyof InputField,
+    value: string
+  ) => {
+    setInputs((prevInputs) =>
+      prevInputs.map((input) =>
+        input.id === id ? { ...input, [field]: value } : input
+      )
+    );
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setSubmittedData((prevData) => [...(prevData || []), ...inputs]); // Save submitted data
+    console.log("Submitted Data:", inputs);
+  };
+
+  const handleDelete = (id: number) => {
+    setSubmittedData((prevData) => prevData?.filter((data) => data.id !== id) || []);
+  };
+
+  return (
+    <div className="flex flex-col items-center py-10 bg-gray-900 min-h-screen">
+      <h1 className="text-2xl font-bold mb-6 text-primary">Dynamic User Input</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-slate-700/40 shadow-md rounded-lg p-6 w-full max-w-lg space-y-4"
+      >
+        {inputs.map((input) => (
+          <div key={input.id} className="bg-transparent p-4 rounded-md shadow-md mb-4">
+            <div className="flex flex-col space-y-2">
+              <input
+                type="text"
+                placeholder="Name"
+                value={input.name}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleChange(input.id, "name", e.target.value)
+                }
+                className="p-2 border text-white bg-gray-900/40 rounded-md focus:shadow-md focus:shadow-white"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Message"
+                value={input.message}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleChange(input.id, "message", e.target.value)
+                }
+                className="p-2 border border-gray-300 bg-gray-900/40 text-white rounded-md focus:shadow-md focus:shadow-white"
+                required
+              />
             </div>
-            {/* Testimonial section */}
-            <div className='gap-6'>
-                <div className="flex">
-                  {
-                    testimoialsData.map(({id, name, text, img}) => {
-                      return (
-                      <div key = {id} className='my-6'>
-                        <div className='flex flex-col justify-center items-center gap-4 text-center shadow-lg p-4 mx-4 rounded-xl dark:bg-gray-800 bg-primary/10 relative'>
-                          <img src={img} alt="" className='rounded-full block mx-auto'/>
-                          <p className='text-gray-500 text-sm'>{text}</p>
-                          <h1 className='text-xl font-bold'>{name}</h1>
-                          <p className='text-black/20 text-9xl font-serif absolute top-0 right-0 '>,,</p>
-                        </div>
-                      </div>
-                      )
-                    })
-                  }
-                </div>
-            </div>
+          </div>
+        ))}
+        <div className="flex justify-between mt-4">
+          <button
+            type="button"
+            onClick={handleAddInput}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Tambah
+          </button>
+          <button
+            type="button"
+            onClick={handleRemoveInput}
+            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+            disabled={inputs.length === 1}
+          >
+            Kurang
+          </button>
         </div>
+        <button
+          type="submit"
+          className="w-full py-2 mt-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+        >
+          Submit
+        </button>
+      </form>
+
+      {submittedData && submittedData.length > 0 && (
+        <div className="mt-10 bg-gray-700/40 shadow-md rounded-lg p-6 w-full max-w-lg">
+          <h2 className="text-xl font-bold mb-4 text-primary">Submitted Data</h2>
+          {submittedData.map((data) => (
+            <div key={data.id} className="bg-gray-900/35 p-4 rounded-md shadow-md mb-4">
+              <div className="flex flex-col space-y-2">
+                <p className="text-primary"><strong className="text-secondary">Name:</strong> {data.name}</p>
+                <p className="text-primary"><strong className="text-secondary">Message:</strong> {data.message}</p>
+              </div>
+              <div className="flex justify-end mt-4">
+                <button
+                  onClick={() => handleDelete(data.id)}
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                >
+                  Hapus
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
-    )
+  );
 }
-export default DashboardPage

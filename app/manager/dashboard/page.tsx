@@ -4,9 +4,9 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Food1 from "../../../public/image/biryani2.png";
-import Food2 from "../../../public/image/biryani3.png";
-import Food3 from "../../../public/image/biryani.png";
+import Food1 from "../../../public/image/biryani1.png";
+import Food2 from "../../../public/image/biryani2.png";
+import Food3 from "../../../public/image/biryani3.png";
 
 const ImageList = [
     {

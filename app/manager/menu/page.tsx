@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import Img from '../../../public/image/biryani2.png'
+import Img from '../../../public/image/biryani1.png'
 import Img2 from '../../../public/image/biryani3.png'
-import Img3 from '../../../public/image/biryani.png'
+import Img3 from '../../../public/image/biryani2.png'
 
 interface dataMenu {
     id: number;
@@ -22,32 +22,14 @@ const menu:dataMenu[] = [
   },
   {
     id: 2,
-    img: Img,
-    name: "Chiken Kari",
+    img: Img2,
+    name: "Chiken Biryani",
     deskripsi: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga explicabo nemo. Labore, quibusdam eius."
   },
   {
     id: 3,
-    img: Img,
-    name: "Biryani",
-    deskripsi: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga explicabo nemo. Labore, quibusdam eius."
-  },
-  {
-    id: 4,
-    img: Img,
-    name: "Biryani",
-    deskripsi: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga explicabo nemo. Labore, quibusdam eius."
-  },
-  {
-    id: 5,
-    img: Img,
-    name: "Biryani",
-    deskripsi: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga explicabo nemo. Labore, quibusdam eius."
-  },
-  {
-    id: 6,
-    img: Img,
-    name: "Biryani",
+    img: Img3,
+    name: "Rice Arabian",
     deskripsi: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fuga explicabo nemo. Labore, quibusdam eius."
   },
 ]
@@ -68,12 +50,12 @@ const DashboardPage = () => {
         </div>
         {/* Card section */}
         <div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-16 place-items-center'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 md:gap-16 place-items-center py-16'>
           {
             menu.map(({id, img, name, deskripsi}) => {
               return (
-                <div key={id} className='max-w-[300px] group rounded-2xl bg-white dark:bg-gray-800 dark:text-white dark:hover:text-primary hover:bg-primary hover:text-white duration-300 p-4 shadow-xl'>
-                <div className='h-[100px]'>
+                <div key={id} className='max-w-[300px] group rounded-2xl bg-white dark:bg-gray-800 dark:text-white  hover:bg-primary hover:text-white duration-300 p-4 shadow-xl'>
+                <div className='h-[120px]'>
                   <Image src={img} alt="" className='max-w-[200px] mx-auto block transform -translate-y-14 group-hover:scale-105 group-hover:rotate-6 duration-300'/>
                 </div>
                 <div className='p-4 text-center'>
