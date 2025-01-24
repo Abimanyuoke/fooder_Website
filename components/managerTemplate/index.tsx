@@ -18,7 +18,7 @@ type ManagerProp = {
 
 const ManagerTemplate = ({ children, id, title, menuList }: ManagerProp) => {
    return (
-       <div className="w-full min-h-dvh bg-slate-50">
+       <div className="w-full min-h-dvh">
            <Sidebar menuList={menuList} title={title} id={id}>
                {children}
            </Sidebar>

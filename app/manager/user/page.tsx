@@ -80,18 +80,18 @@ export default function DashboardPage() {
             </div>
           </div>
         ))}
-        <div className="flex justify-between mt-4">
+        <div className="flex justify-between mt-4 py-2">
           <button
             type="button"
             onClick={handleAddInput}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            className="px-4 py-2 bg-slate-900 text-white rounded-md hover:bg-slate-700 hover:translate-y-1 shadow-sm shadow-white transition-all duration-300"
           >
             Tambah
           </button>
           <button
             type="button"
             onClick={handleRemoveInput}
-            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+            className="px-4 py-2 bg-slate-900 text-white rounded-md hover:translate-y-1 shadow-sm shadow-white transition-all duration-300 hover:bg-slate-700"
             disabled={inputs.length === 1}
           >
             Kurang
@@ -99,7 +99,7 @@ export default function DashboardPage() {
         </div>
         <button
           type="submit"
-          className="w-full py-2 mt-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+          className="w-full py-2 mt-4 bg-slate-900 text-white rounded-md hover:bg-slate-700 hover:translate-y-1 shadow-sm shadow-white transition-all duration-300"
         >
           Submit
         </button>

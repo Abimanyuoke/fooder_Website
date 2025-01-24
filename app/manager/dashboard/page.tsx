@@ -28,7 +28,7 @@ const ImageList = [
 const DashboardPage = () => {
     const [imageId, setImageId] = React.useState(Food1);
     return (
-        <div className='min-h-[632px] sm:min-h-[640px] bg-gray-900 text-white duration-200 flex justify-center items-center md:px-32'>
+        <div className='min-h-dvh bg-gray-900 text-white duration-200 flex justify-center items-center md:px-32'>
             <div className='container pb-8 sm:pb-0'>
                 <div className='grid grid-cols-1 sm:grid-cols-2'>
                     {/* text content section  */}

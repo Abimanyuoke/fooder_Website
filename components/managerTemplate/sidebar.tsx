@@ -5,6 +5,7 @@ import Image from "next/image"
 import MenuItem from "./menuItem"
 import Logo from '../../public/image/restaurant.png'
 import Profile from '../../public/image/profile.png'
+import { AlertSuccess } from "../alert"
 
 
 type MenuType = {
@@ -22,6 +23,33 @@ type ManagerProp = {
 }
 
 const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
+
+    const [isAlertOpen, setIsAlertOpen] = useState(false);
+    const [alertContent, setAlertContent] = useState<React.ReactNode | null>(null);
+    const [timerWidth, setTimerWidth] = useState(100);
+
+    const handleAlert = (content: React.ReactNode) => {
+        setAlertContent(content);
+        setIsAlertOpen(true);
+        setTimerWidth(100);
+
+        const duration = 2000; // Total duration for the alert in ms
+        const interval = 100; // Interval to update the timer
+        const decrement = (interval / duration) * 100; // Percentage to decrement
+
+        const intervalId = setInterval(() => {
+            setTimerWidth((prev) => {
+                if (prev <= 0) {
+                    clearInterval(intervalId);
+                    setIsAlertOpen(false);
+                    setAlertContent(null);
+                    return 0;
+                }
+                return prev - decrement;
+            });
+        }, interval);
+    };
+
     const [isShow, setIsShow] = useState(false)
     const [isDropdownOpen, setisDropdownOpen] = useState(false);
     const toggleDropdown = () => {
@@ -30,7 +58,7 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
 
 
     return (
-        <div className="w-full min-h-dvh bg-slate-50">
+        <div className="w-full min-h-dvh">
             {/* header section */}
             <header className="flex justify-between items-center p-4 mb-0 bg-primary shadow-md">
                 <div className="flex gap-2">
@@ -55,9 +83,12 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
 
                     {isDropdownOpen && (
                         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 top-full">
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                            <a href="../" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            <a href="../manager/profil" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="../manager/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="../" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                onClick={() => {
+                                handleAlert(<AlertSuccess title="Success">Berhasil Logout</AlertSuccess>)
+                                }}>Logout</a>
                         </div>
                     )}
                 </div>
@@ -70,9 +101,9 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
             </div>
             {/* end content section */}
 
-           {/* sidebar section */}
+            {/* sidebar section */}
             <div className={`flex flex-col w-2/3 md:w-1/2 lg:w-1/4 h-full fixed top-0 right-full transition-transform z-50
-           bg-white border-r border-primary ${isShow ? `translate-x-full` : ``}`}>
+           bg-white border-r border-primary ${isShow? `translate-x-full` : ``}`}>
 
                 {/* close button */}
                 <div className="ml-auto p-2">
@@ -117,7 +148,19 @@ const Sidebar = ({ children, id, title, menuList }: ManagerProp) => {
             </div>
             {/* end sidebar section */}
 
+            {isAlertOpen && (
+                <div className="fixed inset-0 flex justify-center bg-black bg-opacity-50 z-50">
+                    <div className="p-4 rounded-md shadow-lg text-center max-w-sm w-full relative">
+                        <div className="mb-4">{alertContent}</div>
+                        <div className="max-w-sm w-full h-1 bg-gray-300 rounded overflow-hidden">
+                            <div className="h-full bg-yellow-500 transition-all duration-100"
+                                style={{ width: `${timerWidth}%` }}>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
         </div>
     )
