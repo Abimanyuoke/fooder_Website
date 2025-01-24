@@ -117,7 +117,7 @@ export default function DashboardPage() {
               <div className="flex justify-end mt-4">
                 <button
                   onClick={() => handleDelete(data.id)}
-                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 hover:translate-y-1 shadow transition-all duration-300"
                 >
                   Hapus
                 </button>

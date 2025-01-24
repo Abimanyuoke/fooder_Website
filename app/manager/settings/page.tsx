@@ -92,7 +92,7 @@ export default function Settings() {
             </div>
           </div>
 
-          <button type="submit" className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"  onClick={() => {
+          <button type="submit" className="w-full bg-slate-900 text-white rounded-md hover:bg-slate-700 hover:translate-y-1 shadow-sm shadow-white transition-all duration-300 py-4"  onClick={() => {
                           handleAlert(<AlertSuccess title="Success">Berhasil Disimpan</AlertSuccess>);
                         }}> {/* Tombol full width */}
             Simpan Perubahan

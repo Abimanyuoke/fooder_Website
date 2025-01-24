@@ -149,7 +149,7 @@ export default function Transaction() {
             >Pesan</button>
           </div>
         ) : (
-          <p className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 w-32 text-center font-semibold">Harus pesan dulu</p>
+          <p className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 w-32 text-center font-semibold hover:translate-y-1 transition-all duration-300">Harus pesan dulu</p>
         )}
       </div>
 
