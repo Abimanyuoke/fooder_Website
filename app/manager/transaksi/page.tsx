@@ -99,7 +99,7 @@ export default function Transaction() {
           {" "}
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ullam a nisi vero qui sed consequuntur iste cum minima error.
         </p>
-        <div className="mt-4 mb-6 flex justify-center space-x-4">
+        <div className="mt-4 mb-6 flex justify-center">
             <select
               name="category"
               value={category || ''}
@@ -114,7 +114,7 @@ export default function Transaction() {
           </div>
       </div>
       <div className="flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-36">
           {filteredTransaksi.map((item) => (
             <div
               key={item.id}

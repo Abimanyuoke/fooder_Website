@@ -29,7 +29,7 @@ const DashboardPage = () => {
             {" "}
             Lorem our adipisicing elit. Aliquid ullam a nisi vero qui sed consequuntur iste cum minima error.
           </p>
-          <div className="mt-4 mb-6 flex justify-center space-x-4">
+          <div className="mt-4 mb-6 flex justify-center space-x-4 text-primary">
             <select
               name="category"
               value={category || ''}
