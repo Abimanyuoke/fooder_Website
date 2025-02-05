@@ -34,8 +34,8 @@ export default function Transaction() {
   const [alertContent, setAlertContent] = useState<React.ReactNode | null>(null);
   const [timerWidth, setTimerWidth] = useState(100);
 
-  const handleAlert = (content: React.ReactNode) => {
-    setAlertContent(content);
+  const handleAlert = (e: React.ReactNode) => {
+    setAlertContent(e);
     setIsAlertOpen(true);
     setTimerWidth(100);
 
