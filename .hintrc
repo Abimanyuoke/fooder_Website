@@ -16,6 +16,13 @@
       {
         "select-name": "off"
       }
-    ]
+    ],
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-active": "off"
+      }
+    ],
+    "typescript-config/consistent-casing": "off"
   }
 }
